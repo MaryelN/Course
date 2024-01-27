@@ -47,3 +47,4 @@ CREATE TABLE course_pilote(
     FOREIGN KEY (course_id) REFERENCES course(course_id),
     CONSTRAINT course_pilote_PK PRIMARY KEY (pilote_id, course_id)
 );
+CREATE INDEX circuit_pays ON circuit(pays);
