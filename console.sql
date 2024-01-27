@@ -62,7 +62,10 @@ INSERT INTO circuit (pays, nom, longueur) VALUES ('France', 'Circuit Paul Ricard
 ('Monaco', 'Circuit de Monaco', 3.385),
 ('Canada', 'Circuit Gilles Villeneuve', 4.152);
 
-INSERT INTO course (nom, date_course) VALUES ('Grand Prix de France', CURDATE(), 1);
+INSERT INTO course (nom, date_course) VALUES ('Grand Prix de France', CURDATE(), 1),
+('Grand Prix d''Espagne', CURDATE(), 2),
+('Grand Prix de Monaco', CURDATE(), 3),
+('Grand Prix du Canada', CURDATE(), 4);
 INSERT INTO equipe(pays, nom, directeur_technique) VALUES ('France', 'Alpine F1 Team', 'Davide Brivio'),
 ('Espagne', 'Ferrari', 'Andreas Seild');
 INSERT INTO pilote (nom, prenom, date_naissance, nationalite, equipe_id) VALUES ('Ocon', 'Esteban', '1996-09-17', 'France', 1),
