@@ -1,55 +1,48 @@
-Base de données de Course
-Présentation
+# Base de données de Course
 
-Ce script SQL crée une base de données pour un championnat de courses automobiles. Il définit des tables pour les circuits, les courses, les équipes, les pilotes et les résultats de course. De plus, il crée une vue (score_pilote) pour afficher des informations sur les scores des pilotes.
-Tables Créées
+## Présentation
 
-    circuit : Contient des informations sur les circuits de course.
-    course : Représente les événements de course avec des détails tels que le nom, la date et le circuit associé.
-    equipe : Représente les équipes de course avec des informations comme le nom, le pays et le directeur technique.
-    pilote : Contient des détails sur les pilotes de course, y compris le nom, la date de naissance, la nationalité et l'équipe à laquelle ils appartiennent.
-    course_pilote : Représente les résultats de chaque course, y compris la position du pilote.
+Bienvenue dans la base de données de course, un projet académique réalisé avec l'aide d'un cours en ligne pendant mes études. Cette base de données a été conçue pour gérer les informations d'un championnat de courses automobiles. Voici un aperçu des principales fonctionnalités et entités.
 
-Vues Créées
+### Entités Principales
 
-    score_pilote : Une vue qui affiche les scores des pilotes, y compris leur nom, prénom, nom de la course, date de la course, ID de la course et position.
+- **Circuit** : Informations sur les circuits de course.
+- **Course** : Événements de course avec détails tels que le nom, la date et le circuit associé.
+- **Équipe** : Équipes de course avec des détails tels que le nom, le pays et le directeur technique.
+- **Pilote** : Détails sur les pilotes de course, y compris le nom, la date de naissance, la nationalité et l'équipe.
+- **Course_Pilote** : Résultats de chaque course avec la position du pilote.
 
-Insertion de Données
+### Vues et Fonctionnalités
 
-    Les données sont insérées dans les tables circuit, course, equipe et pilote, représentant des informations sur les circuits, les courses, les équipes et les pilotes, respectivement.
-    La vue score_pilote est peuplée en fonction des données des tables pilote, course_pilote et course.
+- **Score_Pilote** : Vue affichant les scores des pilotes, y compris les détails sur la course.
+- **Compteur de Courses** : Chaque pilote a un compteur (`compteur_course`) pour suivre le nombre de courses auxquelles il a participé.
+- **Historique des Records** : La table `historique` stocke les meilleurs temps de course de chaque pilote, mis à jour régulièrement.
 
-Déclencheur
+### Utilisation
 
-    Un déclencheur (update_compteur_course) est créé pour incrémenter un compteur (compteur_course) dans la table pilote à chaque insertion d'un nouveau enregistrement dans la table course_pilote.
+1. **Voir les Scores des Pilotes :**
+   - Exécutez `SELECT * FROM score_pilote;` pour consulter les scores des pilotes.
 
-Fonctionnalités Additionnelles
+2. **Voir Tous les Pilotes :**
+   - Exécutez `SELECT * FROM pilote;` pour afficher les détails de tous les pilotes.
 
-    Compteur pour les Pilotes :
-        Une nouvelle colonne (compteur_course) est ajoutée à la table pilote pour suivre le nombre de courses auxquelles chaque pilote a participé.
+3. **Insérer une Nouvelle Course :**
+   - Exécutez `INSERT INTO course(nom, date_course, circuit_id) VALUES ('Eco course', '02/10/2000', 3);` pour ajouter une nouvelle course.
+   - Exécutez `INSERT INTO course_pilote(pilote_id, course_id, position_pilote) VALUES (5, 5, 1), (6, 5, 2);` pour ajouter les résultats de la nouvelle course.
 
-    Déclencheur pour la Mise à Jour du Compteur :
-        Un déclencheur est créé pour mettre à jour automatiquement la colonne compteur_course dans la table pilote lorsqu'un nouveau résultat de course est inséré dans la table course_pilote.
+4. **Voir les Scores Mis à Jour :**
+   - Exécutez `SELECT * FROM score_pilote;` pour voir les scores des pilotes après l'ajout de la nouvelle course.
 
-    Historique des Records :
-        Une nouvelle table (historique) est créée pour stocker les records historiques des meilleurs temps de course pour chaque pilote, indépendamment du circuit ou du pays.
-        Un champ (temps_course) est ajouté à la table course_pilote pour représenter le temps de course.
-        Un ensemble de données est établi pour cette fonctionnalité, et un événement (bestHistoryTimeRecord) est créé pour mettre à jour les enregistrements historiques toutes les minutes.
+5. **Records Historiques :**
+   - Les records historiques sont automatiquement mis à jour toutes les minutes grâce à l'événement `bestHistoryTimeRecord`.
 
-Utilisation
+### Fonctionnalités Avancées
 
-    Voir les Scores des Pilotes :
-        Exécutez SELECT * FROM score_pilote; pour voir les scores des pilotes.
+- **Déclencheur de Compteur :**
+   - Un déclencheur (`update_compteur_course`) met à jour automatiquement le compteur de courses des pilotes.
 
-    Voir Tous les Pilotes :
-        Exécutez SELECT * FROM pilote; pour voir les détails de tous les pilotes.
+### Configuration
 
-    Insérer une Course Supplémentaire :
-        Exécutez INSERT INTO course(nom, date_course, circuit_id) VALUES ('Eco course', '02/10/2000', 3); pour insérer une nouvelle course.
-        Exécutez INSERT INTO course_pilote(pilote_id, course_id, position_pilote) VALUES (5, 5, 1), (6, 5, 2); pour insérer les résultats de la nouvelle course.
+Assurez-vous que votre serveur de base de données MySQL prend en charge les événements et les déclencheurs pour bénéficier de toutes les fonctionnalités de ce script.
 
-    Voir les Scores des Pilotes Mis à Jour :
-        Exécutez SELECT * FROM score_pilote; pour voir les scores des pilotes mis à jour après la course supplémentaire.
-
-    Records Historiques :
-        Les records historiques sont mis à jour automatiquement toutes les minutes grâce à l'événement bestHistoryTimeRecord.
+**Note :** Ce projet a été réalisé dans un contexte académique et a été enrich
