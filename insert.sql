@@ -20,7 +20,6 @@ INSERT INTO pilote (nom, prenom, date_naissance, nationalite, equipe_id) VALUES 
 ('Verstappen', 'Max', '1997-09-30', 'Pays-Bas', 4),
 ('Leclerc', 'Charles', '1997-10-16', 'Monaco', 4);
 -- 1.Ajouter un compteur de course sur le pilotes
-ALTER TABLE pilote ADD COLUMN compteur_course INTEGER NOT NULL DEFAULT 0; 
 INSERT INTO course_pilote (pilote_id, course_id, position_pilote) VALUES (1, 1, 3),
 (2, 1, 2),
 (3, 1, 4),
